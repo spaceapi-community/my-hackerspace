@@ -1,4 +1,4 @@
-package ch.fixme.status;
+package io.spaceapi.myhackerspace;
 
 import org.junit.Assert;
 import org.junit.Test;

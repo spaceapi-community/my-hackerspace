@@ -1,4 +1,4 @@
-package ch.fixme.status;
+package io.spaceapi.myhackerspace;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

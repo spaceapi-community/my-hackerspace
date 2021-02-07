@@ -4,7 +4,7 @@
     Licensed under GNU's GPL 3, see README
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ch.fixme.status">
+    package="io.spaceapi.myhackerspace">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

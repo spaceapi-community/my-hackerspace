@@ -3,7 +3,7 @@
  * Licensed under GNU's GPL 3, see README
  */
 
-package ch.fixme.status;
+package io.spaceapi.myhackerspace;
 
 import android.app.Activity;
 import android.app.AlertDialog;

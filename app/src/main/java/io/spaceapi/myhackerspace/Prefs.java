@@ -2,7 +2,7 @@
  * Copyright (C) 2012-2017 Aubort Jean-Baptiste (Rorist)
  * Licensed under GNU's GPL 3, see README
  */
-package ch.fixme.status;
+package io.spaceapi.myhackerspace;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
