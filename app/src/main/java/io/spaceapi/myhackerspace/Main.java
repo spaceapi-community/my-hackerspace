@@ -129,7 +129,7 @@ public class Main extends Activity {
             Log.d(TAG, "onCreate() intent=" + getIntent().toString());
             setCache();
             getHsList();
-            showHsInfo(getIntent());
+            showHsInfo(getIntent(), true);
         } else {
             showError(getString(R.string.error_title) + getString(R.string.error_network_title),
                     getString(R.string.error_network_msg));
@@ -140,7 +140,7 @@ public class Main extends Activity {
     @UiThread
     protected void onNewIntent(Intent intent) {
         Log.d(TAG, "onNewIntent()=" + intent);
-        showHsInfo(intent);
+        showHsInfo(intent, false);
     }
 
     @Override
@@ -170,7 +170,7 @@ public class Main extends Activity {
         final int id = item.getItemId();
         if (id == R.id.menu_refresh) {
             if (hasNetwork()) {
-                showHsInfo(getIntent());
+                showHsInfo(getIntent(), true);
             } else {
                 showError(getString(R.string.error_title) + getString(R.string.error_network_title),
                     getString(R.string.error_network_msg));
@@ -339,7 +339,7 @@ public class Main extends Activity {
     /**
      * Fetch the endpoint and update the `mApiUrl` and `mResultHs` variables.
      */
-    private void showHsInfo(@Nullable Intent intent) {
+    private void showHsInfo(@Nullable Intent intent, boolean skipCache) {
         final Bundle data = (Bundle) getLastNonConfigurationInstance();
 
         // Get space endpoint URL
@@ -368,7 +368,7 @@ public class Main extends Activity {
             finishApi = true;
             mResultHs = (HashMap<String, String>) data.getSerializable(STATE_HS);
             populateDataHs();
-        } else if(mResultHs.containsKey(mApiUrl)) {
+        } else if(mResultHs.containsKey(mApiUrl) && !skipCache) {
             Log.d(TAG, "showHsInfo(data from cache)");
             finishApi = true;
             populateDataHs();
@@ -512,7 +512,7 @@ public class Main extends Activity {
             dismissLoading();
             if (mErrorMsg == null) {
                 mResultHs.put(mUrl, result);
-                showHsInfo(getIntent());
+                showHsInfo(getIntent(), false);
             } else {
                 setViewVisibility(false);
                 showError(mErrorTitle, mErrorMsg);
