@@ -1,4 +1,4 @@
-package io.spaceapi.myhackerspace;
+package io.spaceapi.community.myhackerspace;
 
 import org.junit.Assert;
 import org.junit.Test;

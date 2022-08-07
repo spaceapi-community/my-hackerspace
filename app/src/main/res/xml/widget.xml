@@ -3,7 +3,7 @@
     Licensed under GNU's GPL 3, see README
 -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:configure="io.spaceapi.myhackerspace.Widget_config"
+    android:configure="io.spaceapi.community.myhackerspace.Widget_config"
     android:initialLayout="@layout/widget"
     android:minHeight="40dp"
     android:minWidth="40dp"

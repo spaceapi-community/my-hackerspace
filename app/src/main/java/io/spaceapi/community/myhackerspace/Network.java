@@ -1,8 +1,9 @@
 /*
  * Copyright (C) 2012-2017 Aubort Jean-Baptiste (Rorist)
+ * Copyright (C) 2020-2022 Danilo Bargen (dbrgn)
  * Licensed under GNU's GPL 3, see README
  */
-package io.spaceapi.myhackerspace;
+package io.spaceapi.community.myhackerspace;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

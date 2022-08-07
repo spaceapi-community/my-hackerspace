@@ -1,4 +1,8 @@
-package io.spaceapi.myhackerspace;
+/*
+ * Copyright (C) 2020-2022 Danilo Bargen (dbrgn)
+ * Licensed under GNU's GPL 3, see README
+ */
+package io.spaceapi.community.myhackerspace;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
