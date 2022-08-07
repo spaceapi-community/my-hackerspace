@@ -1,11 +1,12 @@
-version: 2
+version: '2.1'
+orbs:
+  android: circleci/android@2.0
 jobs:
   build:
-    working_directory: ~/code
-    docker:
-      - image: circleci/android:api-31
-    environment:
-      JVM_OPTS: -Xmx3200m
+    executor:
+      name: android/android-machine
+      resource-class: medium
+      tag: 2021.10.1
     steps:
       - checkout
       - restore_cache:
