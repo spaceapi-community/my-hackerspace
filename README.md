@@ -32,8 +32,17 @@ The app will get the list of hackspaces from [https://directory.spaceapi.io](htt
 You can then choose the app by its name.
 When the app is chosen, the spaceapi data is retrieved from a different url
 belonging to the hackspace.
-If you like to add your Hackspace, have a look at
+If you like to add your Hackspace endpoint, have a look at
 [the SpaceAPI website](https://spaceapi.io/provide-an-endpoint/).
+
+### The Widget
+
+The image for the widget is specifed in the Hackspace endpoind specified as JSON.
+Have a look at the [schema documentation](https://spaceapi.io/docs/) to make your
+hackspace more pretty!
+
+1. `open.icon` - if present, the widget chooses the specific open/closed images
+2. `logo` - the widget chooses the logo of the hackspace to display
 
 ## How to Compile
 
