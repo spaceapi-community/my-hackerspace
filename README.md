@@ -26,6 +26,15 @@ now mainly being developed by members of [Coredump].
 <!--<a href="https://play.google.com/store/apps/details?id=io.spaceapi.community.myhackerspace"><img width="200" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a> -->
 <a href="https://f-droid.org/en/packages/io.spaceapi.community.myhackerspace/"><img width="200" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid"></a>
 
+## How it works
+
+The app will get the list of hackspaces from [https://directory.spaceapi.io](https://directory.spaceapi.io).
+You can then choose the app by its name.
+When the app is chosen, the spaceapi data is retrieved from a different url
+belonging to the hackspace.
+If you like to add your Hackspace, have a look at
+[the SpaceAPI website](https://spaceapi.io/provide-an-endpoint/).
+
 ## How to Compile
 
 First, get the sources.
@@ -62,3 +71,5 @@ You can also build and directly install the file to your connected smartphone:
 To see other tasks that gradle offers, run
 
     ./gradlew tasks
+
+
