@@ -69,7 +69,7 @@ public class Widget extends AppWidgetProvider {
         for (int widgetId : appWidgetIds) {
             // Remove widget alarm
             PendingIntent pi = PendingIntent.getService(ctxt, widgetId,
-                        getIntent(ctxt, widgetId), SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0);
+                        getIntent(ctxt, widgetId), getPendingIntentMutableFlag());
             AlarmManager am = (AlarmManager) ctxt
                     .getSystemService(Context.ALARM_SERVICE);
             am.cancel(pi);
@@ -85,6 +85,10 @@ public class Widget extends AppWidgetProvider {
 
             Log.i(TAG, "Remove widget alarm for id=" + widgetId);
         }
+    }
+
+    protected static int getPendingIntentMutableFlag() {
+        return SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0;
     }
 
     protected static Intent getIntent(Context ctxt, int widgetId) {
@@ -107,7 +111,7 @@ public class Widget extends AppWidgetProvider {
         // Set alarm
         AlarmManager am = (AlarmManager) ctxt
                 .getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pi = PendingIntent.getService(ctxt, widgetId, i, SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0);
+        PendingIntent pi = PendingIntent.getService(ctxt, widgetId, i, getPendingIntentMutableFlag());
         am.cancel(pi);
         am.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 delay, update_interval, pi);
@@ -191,7 +195,7 @@ public class Widget extends AppWidgetProvider {
         Intent clickIntent = new Intent(ctxt, Main.class);
         clickIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
         PendingIntent pendingIntent = PendingIntent.getActivity(ctxt, widgetId,
-                clickIntent, PendingIntent.FLAG_CANCEL_CURRENT + SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0);
+                clickIntent, PendingIntent.FLAG_CANCEL_CURRENT + getPendingIntentMutableFlag());
         views.setOnClickPendingIntent(R.id.widget_image, pendingIntent);
         manager.updateAppWidget(widgetId, views);
     }
