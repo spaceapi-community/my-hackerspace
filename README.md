@@ -23,7 +23,7 @@ now mainly being developed by members of [Coredump].
 [SpaceAPI community repositories]: https://github.com/spaceapi-community/
 [Coredump]: https://www.coredump.ch/
 
-<a href="https://f-droid.org/en/packages/io.spaceapi.community.myhackerspace/"><img width="200" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid"></a>
+<a href="https://f-droid.org/packages/io.spaceapi.community.myhackerspace/"><img width="200" src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid"></a>
 <a href="https://play.google.com/store/apps/details?id=io.spaceapi.community.myhackerspace"><img width="200" src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play"></a>
 
 ## How to Compile
