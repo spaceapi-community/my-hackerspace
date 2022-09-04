@@ -17,6 +17,7 @@ This is an Android app with the following features:
 The app was originally developed in 2012 by [@rorist] from [FIXME Lausanne]. In
 2021, the app was transferred to the [SpaceAPI community repositories] and is
 now mainly being developed by members of [Coredump].
+You can join our [Matrix](https://matrix.org/) chat at `#spaceapi:matrix.coredump.ch`.
 
 [@rorist]: https://github.com/rorist
 [FIXME Lausanne]: https://fixme.ch/
