@@ -39,7 +39,7 @@ If you would like to add your space to the directory, have a look at
 
 The image for the widget is specified in the SpaceAPI endpoint JSON.
 Have a look at the [schema documentation](https://spaceapi.io/docs/) to make your
-hackspace more pretty!
+widget more pretty!
 
 1. `open.icon` - if present, the widget chooses the specific open/closed images
 2. `logo` - the widget chooses the logo of the hackspace to display
