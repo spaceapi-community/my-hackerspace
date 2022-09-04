@@ -29,7 +29,7 @@ now mainly being developed by members of [Coredump].
 ## How it works
 
 The app will get the list of hackspaces from [https://directory.spaceapi.io](https://directory.spaceapi.io).
-You can then choose the app by its name.
+You can then choose the space by its name from a list.
 When the app is chosen, the spaceapi data is retrieved from a different url
 belonging to the hackspace.
 If you like to add your Hackspace endpoint, have a look at
