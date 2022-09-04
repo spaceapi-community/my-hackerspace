@@ -5,8 +5,6 @@
  */
 package io.spaceapi.community.myhackerspace;
 
-import static android.os.Build.VERSION.SDK_INT;
-
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.PendingIntent;
@@ -88,7 +86,7 @@ public class Widget extends AppWidgetProvider {
     }
 
     protected static int getPendingIntentMutableFlag() {
-        return SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ? PendingIntent.FLAG_MUTABLE : 0;
     }
 
     protected static Intent getIntent(Context ctxt, int widgetId) {
