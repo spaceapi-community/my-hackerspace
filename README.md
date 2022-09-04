@@ -37,7 +37,7 @@ If you would like to add your space to the directory, have a look at
 
 ### The Widget
 
-The image for the widget is specifed in the Hackspace endpoind specified as JSON.
+The image for the widget is specified in the SpaceAPI endpoint JSON.
 Have a look at the [schema documentation](https://spaceapi.io/docs/) to make your
 hackspace more pretty!
 
