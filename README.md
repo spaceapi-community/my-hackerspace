@@ -30,8 +30,8 @@ now mainly being developed by members of [Coredump].
 
 The app will get the list of hackspaces from [https://directory.spaceapi.io](https://directory.spaceapi.io).
 You can then choose the space by its name from a list.
-When the app is chosen, the spaceapi data is retrieved from a different url
-belonging to the hackspace.
+When the space is chosen, the associated data is retrieved from the space's
+SpaceAPI endpoint (which is registered in the SpaceAPI directory).
 If you like to add your Hackspace endpoint, have a look at
 [the SpaceAPI website](https://spaceapi.io/provide-an-endpoint/).
 
