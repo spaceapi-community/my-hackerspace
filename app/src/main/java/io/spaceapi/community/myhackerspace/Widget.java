@@ -39,6 +39,18 @@ public class Widget extends AppWidgetProvider {
     static final String WIDGET_IDS = "widget_ids";
     static final String WIDGET_FORCE = "widget_force";
 
+    public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        // see https://intrepidgeeks.com/tutorial/android-app-widgets
+        final int N = appWidgetIds.length;
+
+        // Perform this loop procedure for each App Widget that belongs to this provider
+        for (int i=0; i<N; i++) {
+            int appWidgetId = appWidgetIds[i];
+            Log.i(TAG, "Widget.onUpdate " + appWidgetId);
+            Widget.startWidgetUpdateTask(context, appWidgetId);
+        }
+    }
+
     public void onReceive(Context ctxt, Intent intent) {
         String action = intent.getAction();
         if (intent.hasExtra(WIDGET_IDS)
@@ -115,6 +127,7 @@ public class Widget extends AppWidgetProvider {
                 delay, update_interval, pi);
         // Log.i(TAG, "start notification every " + update_interval / 1000
         // + "s");
+        startWidgetUpdateTask(ctxt, widgetId);
     }
 
     private static class GetImage extends AsyncTask<URL, Void, Bitmap> {
@@ -292,19 +305,23 @@ public class Widget extends AppWidgetProvider {
 
         @Override
         protected void onHandleIntent(Intent intent) {
-            final Context ctxt = UpdateService.this;
+            final Context context = UpdateService.this;
             final int widgetId = intent.getIntExtra(
                     AppWidgetManager.EXTRA_APPWIDGET_ID,
                     AppWidgetManager.INVALID_APPWIDGET_ID);
-            SharedPreferences prefs = PreferenceManager
-                    .getDefaultSharedPreferences(ctxt);
-            if (Main.hasNetwork(ctxt) && prefs.contains(Main.PREF_API_URL_WIDGET + widgetId)) {
-                final String url = prefs.getString(Main.PREF_API_URL_WIDGET + widgetId, Main.API_DEFAULT);
-                Log.i(TAG, "Update widgetid " + widgetId + " with url " + url);
-                new Handler(Looper.getMainLooper())
-                        .post(() -> new GetApiTask(ctxt, widgetId).execute(url));
-            }
+            Widget.startWidgetUpdateTask(context, widgetId);
             stopSelf();
+        }
+    }
+
+    private static void startWidgetUpdateTask(Context context, int widgetId) {
+        SharedPreferences prefs = PreferenceManager
+                .getDefaultSharedPreferences(context);
+        if (Main.hasNetwork(context) && prefs.contains(Main.PREF_API_URL_WIDGET + widgetId)) {
+            final String url = prefs.getString(Main.PREF_API_URL_WIDGET + widgetId, Main.API_DEFAULT);
+            Log.i(TAG, "Update widgetId " + widgetId + " with url " + url);
+            new Handler(Looper.getMainLooper())
+                    .post(() -> new GetApiTask(context, widgetId).execute(url));
         }
     }
 
