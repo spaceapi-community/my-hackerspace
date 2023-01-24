@@ -703,7 +703,7 @@ public class Main extends Activity {
 
             // Location
             addTitle(iftr, vg, R.string.api_location);
-            TextView latLonTv = addEntry(iftr, vg, data.location.lon + ", " + data.location.lat);
+            TextView latLonTv = addEntry(iftr, vg, data.location.lat + ", " + data.location.lon);
             Linkify.addLinks(
                 latLonTv,
                 Pattern.compile("^.*$", Pattern.DOTALL),
