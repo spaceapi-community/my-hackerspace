@@ -12,7 +12,7 @@
         android:key="api_endpoint"
         android:title="@string/prefs_api_title"
         android:summary="@string/prefs_api_summary"
-        android:defaultValue="https://directory.spaceapi.io/"
+        android:defaultValue="https://raw.githubusercontent.com/SpaceApi/directory/master/directory.json"
         android:inputType="textUri" />
 
     <EditTextPreference

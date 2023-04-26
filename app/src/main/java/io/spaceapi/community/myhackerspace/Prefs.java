@@ -20,7 +20,7 @@ public class Prefs extends PreferenceActivity implements
         OnSharedPreferenceChangeListener {
 
     public static final String KEY_API_ENDPOINT = "api_endpoint";
-    public static final String DEFAULT_API_ENDPOINT = "https://directory.spaceapi.io/";
+    public static final String DEFAULT_API_ENDPOINT = "https://raw.githubusercontent.com/SpaceApi/directory/master/directory.json";
 
     public static final String KEY_API_URL = "apiurl";
 
