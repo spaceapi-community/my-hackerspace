@@ -712,7 +712,7 @@ public class Main extends Activity {
             addEntryIfValueNotNull(iftr, vg, R.string.api_contact_irc, data.contact.irc);
             addEntryIfValueNotNull(iftr, vg, R.string.api_contact_twitter, data.contact.twitter);
             addEntryIfValueNotNull(iftr, vg, R.string.api_contact_identica, data.contact.identica);
-            addEntryIfValueNotNull(iftr, vg, R.string.api_contact_mastodon, data.contact.identica);
+            addEntryIfValueNotNull(iftr, vg, R.string.api_contact_mastodon, data.contact.mastodon);
             addEntryIfValueNotNull(iftr, vg, R.string.api_contact_facebook, data.contact.facebook); // Eeeew!
             addEntryIfValueNotNull(iftr, vg, R.string.api_contact_foursquare, data.contact.foursquare);
             addEntryIfValueNotNull(iftr, vg, R.string.api_contact_xmpp, data.contact.xmpp);
