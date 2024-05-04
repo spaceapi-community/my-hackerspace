@@ -285,7 +285,9 @@ public class Widget extends AppWidgetProvider {
 
                 // Status icon or space icon
                 if (data.state != null && data.state.icon != null) {
-                    new GetImage(ctxt, mId, status_text).execute(statusBool ? data.state.icon.open : data.state.icon.closed);
+                    new GetImage(ctxt, mId, status_text).execute(
+                        statusBool? new URL(data.state.icon.open) : new URL(data.state.icon.closed)
+                    );
                 } else {
                     new GetImage(ctxt, mId, status_text).execute(new URL(data.logo));
                 }
