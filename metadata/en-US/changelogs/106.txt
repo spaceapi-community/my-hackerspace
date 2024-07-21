@@ -1,0 +1,4 @@
+- [bug] Fix a parsing error for certain endpoints
+- [change] Upgrade dependencies, switch to Java 17, switch to Gradle 8, change
+  TargetSDK to 34
+

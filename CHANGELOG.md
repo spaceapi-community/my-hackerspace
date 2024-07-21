@@ -12,6 +12,22 @@ Possible tags:
 # Unreleased
 
 
+# v2.1.3 (2024-07-21)
+
+- [bug] Fix a parsing error for certain endpoints ([#50])
+- [change] Upgrade dependencies, switch to Java 17, switch to Gradle 8, change
+  TargetSDK to 34 ([#53])
+
+Contributors to this version:
+
+- Danilo Bargen (@dbrgn)
+
+Thanks!
+
+[#50]: https://github.com/spaceapi-community/my-hackerspace/pull/50
+[#53]: https://github.com/spaceapi-community/my-hackerspace/pull/53
+
+
 # v2.1.2 (2023-10-02)
 
 - [feature] Show state "last change" timestamp as localized datetime ([#47])
