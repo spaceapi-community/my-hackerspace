@@ -46,7 +46,8 @@ Licensed under GNU's GPL 3, see README
     <string name="prefs_transparent_title">Transparentes Widget</string>
     <string name="prefs_transparent_summary">Das Hintergrundbild des Widgets wird transparent statt grau dargestellt.</string>                
     <string name="prefs_text_title">Widget-Statustext</string>
-    <string name="prefs_text_summary">Statustext unter dem Widget hinzufügen</string>        
+    <string name="prefs_text_summary">Statustext unter dem Widget hinzufügen</string>
+    <string name="prefs_about_title">Über Diese App</string>
 
     <string name="api_status">Status</string>
     <string name="api_lastchange">Letzte Aktualisierung: </string>
@@ -80,4 +81,7 @@ Licensed under GNU's GPL 3, see README
     <string name="api_sensor_radiation">Radioaktivität</string>
     <string name="api_sensor_total_member_count">Mitgliederanzahl</string>
     <string name="api_sensor_account_balance">Kontostand</string>
+
+    <string name="about_version_title">App-Version:</string>
+    <string name="about_license_title">Lizenz:</string>
 </resources>

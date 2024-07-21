@@ -93,7 +93,6 @@ Licensed under GNU's GPL 3, see README
 
     <string name="about_version_title">App Version:</string>
     <string name="about_license_title">License:</string>
-    <string name="about_license_text">GNU GENERAL PUBLIC LICENSE Version 3</string>
-    <string name="about_visit_repository">Visit Repository</string>
+    <string name="about_license_text" translatable="false">GNU GENERAL PUBLIC LICENSE Version 3</string>
     <string name="about_repository_url" translatable="false">https://github.com/spaceapi-community/my-hackerspace</string>
 </resources>
