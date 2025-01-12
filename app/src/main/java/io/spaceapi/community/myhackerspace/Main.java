@@ -18,16 +18,11 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
 import android.text.format.DateUtils;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -637,14 +632,18 @@ public class Main extends Activity {
             viewDetails2.setVisibility(View.GONE);
         }
         if (lastchange != null) {
-            CharSequence relativeLc = DateUtils.getRelativeDateTimeString(
-                this,
-                (long) (lastchange * 1000),
-                DateUtils.MINUTE_IN_MILLIS,
-                DateUtils.WEEK_IN_MILLIS,
-                DateUtils.FORMAT_ABBREV_RELATIVE
-            );
-            viewLastchange.setText(getString(R.string.api_lastchange, relativeLc));
+            if (System.currentTimeMillis() - lastchange * DateUtils.SECOND_IN_MILLIS < DateUtils.MINUTE_IN_MILLIS) {
+                viewLastchange.setText(getString(R.string.api_lastchange, getString(R.string.api_lastchange_moments_ago)));
+            } else {
+                CharSequence relativeLc = DateUtils.getRelativeDateTimeString(
+                    this,
+                    (long) (lastchange * DateUtils.SECOND_IN_MILLIS),
+                    DateUtils.MINUTE_IN_MILLIS,
+                    DateUtils.WEEK_IN_MILLIS,
+                    DateUtils.FORMAT_ABBREV_RELATIVE
+                );
+                viewLastchange.setText(getString(R.string.api_lastchange, relativeLc));
+            }
         } else {
             viewLastchange.setVisibility(View.GONE);
         }
