@@ -10,7 +10,6 @@ Licensed under GNU's GPL 3, see README
 <resources>
 
     <string name="app_name">MyHackerspace</string>
-    <string name="empty"></string>
     <string name="ok">OK</string>
 
     <string name="status_open">Offen</string>
@@ -50,10 +49,13 @@ Licensed under GNU's GPL 3, see README
     <string name="prefs_about_title">Über Diese App</string>
 
     <string name="api_status">Status</string>
-    <string name="api_lastchange">Letzte Aktualisierung: </string>
+    <string name="api_lastchange">Letzte Aktualisierung: %s</string>
     <string name="api_duration">Dauer: </string>
     <string name="api_duration_hours"> Stunde(n)</string>
     <string name="api_location">Ort</string>
+    <string name="api_location_hint">Hinweis</string>
+    <string name="api_location_areas">Bereiche</string>
+    <string name="api_location_country_code">Ländercode</string>
     <string name="api_postal_addr">Postanschrift</string>
     <string name="api_coordinates">Koordinaten</string>
     <string name="api_contact">Kontakt</string>
@@ -73,6 +75,7 @@ Licensed under GNU's GPL 3, see README
     <string name="api_sensor_door_locked_no">Geöffnet</string>
     <string name="api_sensor_beverage_supply">Getränkevorrat</string>
     <string name="api_sensor_power_consumption">Stromverbrauch</string>
+    <string name="api_sensor_power_generation">Stromerzeugung</string>
     <string name="api_sensor_network_connections">Netzwerkverbindungen</string>
     <string name="api_sensor_temperature">Temperatur</string>
     <string name="api_sensor_humidity">Luftfeuchtigkeit</string>
@@ -81,6 +84,8 @@ Licensed under GNU's GPL 3, see README
     <string name="api_sensor_radiation">Radioaktivität</string>
     <string name="api_sensor_total_member_count">Mitgliederanzahl</string>
     <string name="api_sensor_account_balance">Kontostand</string>
+
+    <string name="api_linked_spaces">Verknüpfte Spaces</string>
 
     <string name="about_version_title">App-Version:</string>
     <string name="about_license_title">Lizenz:</string>

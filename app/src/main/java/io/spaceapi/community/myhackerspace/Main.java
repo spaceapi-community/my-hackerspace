@@ -10,7 +10,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.appwidget.AppWidgetManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -19,10 +18,16 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.net.http.HttpResponseCache;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.format.DateUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,14 +70,18 @@ import java.util.regex.Pattern;
 
 import io.spaceapi.SpaceApiParser;
 import io.spaceapi.types.AccountBalance;
+import io.spaceapi.types.Area;
 import io.spaceapi.types.Barometer;
 import io.spaceapi.types.BeverageSupply;
+import io.spaceapi.types.CarbonDioxide;
 import io.spaceapi.types.DoorLocked;
 import io.spaceapi.types.Humidity;
+import io.spaceapi.types.LinkedSpace;
 import io.spaceapi.types.MemberCount;
 import io.spaceapi.types.NetworkConnection;
 import io.spaceapi.types.PeoplePresent;
 import io.spaceapi.types.PowerConsumption;
+import io.spaceapi.types.PowerGeneration;
 import io.spaceapi.types.Status;
 import io.spaceapi.types.Temperature;
 
@@ -608,12 +617,14 @@ public class Main extends Activity {
         @NonNull LinearLayout vg,
         @NonNull String value,
         @Nullable String details1,
-        @Nullable String details2
+        @Nullable String details2,
+        @Nullable Float lastchange
     ) {
         final RelativeLayout rl = (RelativeLayout) inflater.inflate(R.layout.entry_sensor, null);
         final TextView viewValue = rl.findViewById(R.id.entry_value);
         final TextView viewDetails1 = rl.findViewById(R.id.entry_details1);
         final TextView viewDetails2 = rl.findViewById(R.id.entry_details2);
+        final TextView viewLastchange = rl.findViewById(R.id.entry_lastchange);
         viewValue.setText(value);
         if (details1 != null) {
             viewDetails1.setText(details1);
@@ -624,6 +635,18 @@ public class Main extends Activity {
             viewDetails2.setText(details2);
         } else {
             viewDetails2.setVisibility(View.GONE);
+        }
+        if (lastchange != null) {
+            CharSequence relativeLc = DateUtils.getRelativeDateTimeString(
+                this,
+                (long) (lastchange * 1000),
+                DateUtils.MINUTE_IN_MILLIS,
+                DateUtils.WEEK_IN_MILLIS,
+                DateUtils.FORMAT_ABBREV_RELATIVE
+            );
+            viewLastchange.setText(getString(R.string.api_lastchange, relativeLc));
+        } else {
+            viewLastchange.setVisibility(View.GONE);
         }
         vg.addView(rl);
     }
@@ -676,7 +699,7 @@ public class Main extends Activity {
                     .setCompoundDrawablesWithIntrinsicBounds(
                         android.R.drawable.presence_busy, 0, 0, 0);
             }
-            if (data.state.message != null) {
+            if (data.state != null && data.state.message != null) {
                 status_txt += ": " + data.state.message;
             }
             ((TextView) findViewById(R.id.status_txt)).setText(status_txt);
@@ -685,22 +708,50 @@ public class Main extends Activity {
             if (data.state != null && data.state.lastchange != null) {
                 final ZonedDateTime lastchange = data.state.lastchange.atZone(ZoneId.systemDefault());
                 final String lastchangeString = lastchange.format(this.dateTimeFormatter);
-                addEntry(iftr, vg, getString(R.string.api_lastchange) + " " + lastchangeString);
+                addEntry(iftr, vg, getString(R.string.api_lastchange, lastchangeString));
             }
 
             // Location
-            addTitle(iftr, vg, R.string.api_location);
-            TextView latLonTv = addEntry(iftr, vg, data.location.lat + ", " + data.location.lon);
-            Linkify.addLinks(
-                latLonTv,
-                Pattern.compile("^.*$", Pattern.DOTALL),
-                String.format(MAP_COORD, data.location.lat, data.location.lon)
-            );
+            if (data.location != null) {
+                addTitle(iftr, vg, R.string.api_location);
+                if (data.location.lat != null && data.location.lon != null) {
+                    TextView latLonTv = addEntry(iftr, vg,
+                        data.location.lat + ", " + data.location.lon);
+                    Linkify.addLinks(
+                        latLonTv,
+                        Pattern.compile("^.*$", Pattern.DOTALL),
+                        String.format(MAP_COORD, data.location.lat, data.location.lon)
+                    );
+                }
 
-            // Postal address
-            if (data.location.address != null) {
-                addTitle(iftr, vg, R.string.api_postal_addr);
-                addEntry(iftr, vg, data.location.address);
+                // Postal address
+                if (data.location.address != null) {
+                    addSubtitle(iftr, vg, R.string.api_postal_addr);
+                    addEntry(iftr, vg, data.location.address);
+                }
+                // Country code
+                if (data.location.country_code != null) {
+                    addSubtitle(iftr, vg, R.string.api_location_country_code);
+                    addEntry(iftr, vg, data.location.country_code);
+                }
+                // Hint
+                if (data.location.hint != null) {
+                    addSubtitle(iftr, vg, R.string.api_location_hint);
+                    addEntry(iftr, vg, data.location.hint);
+                }
+                // Areas
+                if (data.location.areas.length > 0) {
+                    addSubtitle(iftr, vg, R.string.api_location_areas);
+                    for (Area entry : data.location.areas) {
+                        addSensor(
+                            iftr,
+                            vg,
+                            String.format("%.1f m²", entry.square_meters),
+                            entry.name,
+                            entry.description, null
+                        );
+                    }
+                }
             }
 
             // Contact
@@ -726,6 +777,7 @@ public class Main extends Activity {
                     || data.sensors.door_locked.length > 0
                     || data.sensors.beverage_supply.length > 0
                     || data.sensors.power_consumption.length > 0
+                    || data.sensors.power_generation.length > 0
                     || data.sensors.network_connections.length > 0
                 /*|| data.sensors.network_traffic.length > 0*/
             )) {
@@ -740,7 +792,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%d", entry.value),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -754,7 +807,8 @@ public class Main extends Activity {
                             vg,
                             getString(entry.value ? R.string.api_sensor_door_locked_yes : R.string.api_sensor_door_locked_no),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -768,7 +822,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%.1f %s", entry.value, entry.unit),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -782,7 +837,23 @@ public class Main extends Activity {
                             vg,
                             String.format("%.1f %s", entry.value, entry.unit),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
+                        );
+                    }
+                }
+
+                // Power generation
+                if (data.sensors.power_generation.length > 0) {
+                    addSubtitle(iftr, vg, R.string.api_sensor_power_generation);
+                    for (PowerGeneration entry : data.sensors.power_generation) {
+                        addSensor(
+                            iftr,
+                            vg,
+                            String.format("%.1f %s", entry.value, entry.unit),
+                            Utils.joinStrings(" / ", entry.location, entry.name),
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -802,7 +873,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%d", entry.value),
                             details,
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -814,6 +886,7 @@ public class Main extends Activity {
                     || data.sensors.humidity.length > 0
                     || data.sensors.barometer.length > 0
                     || data.sensors.wind.length > 0
+                    || data.sensors.carbondioxide.length > 0
             )) {
                 addTitle(iftr, vg, getString(R.string.api_sensors) + ": " + getString(R.string.api_sensors_environment));
 
@@ -826,7 +899,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%.1f %s", entry.value, entry.unit),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -840,7 +914,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%.1f %s", entry.value, entry.unit),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -854,7 +929,23 @@ public class Main extends Activity {
                             vg,
                             String.format("%.1f %s", entry.value, entry.unit),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
+                        );
+                    }
+                }
+
+                // CO2
+                if (data.sensors.carbondioxide.length > 0) {
+                    addSubtitle(iftr, vg, R.string.api_sensor_carbondioxide);
+                    for (CarbonDioxide entry : data.sensors.carbondioxide) {
+                        addSensor(
+                            iftr,
+                            vg,
+                            String.format("%.1f %s", entry.value, entry.unit),
+                            Utils.joinStrings(" / ", entry.location, entry.name),
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -879,7 +970,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%d", entry.value),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -893,7 +985,8 @@ public class Main extends Activity {
                             vg,
                             String.format("%.2f %s", entry.value, entry.unit),
                             Utils.joinStrings(" / ", entry.location, entry.name),
-                            entry.description
+                            entry.description,
+                            entry.lastchange
                         );
                     }
                 }
@@ -905,6 +998,16 @@ public class Main extends Activity {
                 for (String url : data.cam) {
                     final TextView tv = addEntry(iftr, vg, url);
                     Linkify.addLinks(tv, Pattern.compile("^.*$", Pattern.DOTALL), null);
+                }
+            }
+
+            if (data.linked_spaces.length > 0) {
+                addTitle(iftr, vg, R.string.api_linked_spaces);
+                for (LinkedSpace space : data.linked_spaces) {
+                    if (space.website != null) {
+                        TextView tv = addEntry(iftr, vg, space.website);
+                        Linkify.addLinks(tv, Pattern.compile("^.*$", Pattern.DOTALL), null);
+                    }
                 }
             }
 
