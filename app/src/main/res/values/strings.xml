@@ -48,7 +48,7 @@ Licensed under GNU's GPL 3, see README
 
     <string name="api_status">Status</string>
     <string name="api_lastchange">Last change: %s</string>
-    <string name="api_lastchange_moments_ago">Moments ago</string>
+    <string name="api_lastchange_now">Now</string>
     <string name="api_duration">Duration: </string>
     <string name="api_duration_hours"> hour(s)</string>
     <string name="api_location">Location</string>

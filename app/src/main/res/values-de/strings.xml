@@ -50,7 +50,7 @@ Licensed under GNU's GPL 3, see README
 
     <string name="api_status">Status</string>
     <string name="api_lastchange">Letzte Aktualisierung: %s</string>
-    <string name="api_lastchange_moments_ago">Vor wenigen Momenten</string>
+    <string name="api_lastchange_now">Jetzt</string>
     <string name="api_duration">Dauer: </string>
     <string name="api_duration_hours"> Stunde(n)</string>
     <string name="api_location">Ort</string>

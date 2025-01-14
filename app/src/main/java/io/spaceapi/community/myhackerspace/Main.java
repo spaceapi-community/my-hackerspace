@@ -632,8 +632,8 @@ public class Main extends Activity {
             viewDetails2.setVisibility(View.GONE);
         }
         if (lastchange != null) {
-            if (System.currentTimeMillis() - lastchange * DateUtils.SECOND_IN_MILLIS < DateUtils.MINUTE_IN_MILLIS) {
-                viewLastchange.setText(getString(R.string.api_lastchange, getString(R.string.api_lastchange_moments_ago)));
+            if (Math.abs(System.currentTimeMillis() - lastchange * DateUtils.SECOND_IN_MILLIS) < DateUtils.MINUTE_IN_MILLIS) {
+                viewLastchange.setText(getString(R.string.api_lastchange, getString(R.string.api_lastchange_now)));
             } else {
                 CharSequence relativeLc = DateUtils.getRelativeDateTimeString(
                     this,
