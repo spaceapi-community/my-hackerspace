@@ -19,3 +19,7 @@ Commit & tag:
 
     $ git commit -S${GPG_KEY} -m "Release v${VERSION}"
     $ git tag -s -u ${GPG_KEY} v${VERSION} -m "Version ${VERSION}"
+
+Generate a signed APK and upload it to GitHub releases.
+
+The F-Droid release will be updated automatically (might take a few days).
