@@ -12,6 +12,19 @@ Possible tags:
 # Unreleased
 
 
+# v2.2.0 (2025-01-20)
+
+- [feature] Add support for SpaceAPI v15 ([#54])
+
+Contributors to this version:
+
+- @s3lph
+
+Thanks!
+
+[#54]: https://github.com/spaceapi-community/my-hackerspace/pull/54
+
+
 # v2.1.3 (2024-07-21)
 
 - [bug] Fix a parsing error for certain endpoints ([#50])
