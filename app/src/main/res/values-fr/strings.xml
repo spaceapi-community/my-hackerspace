@@ -6,7 +6,6 @@
 <resources>
 
     <string name="app_name">MyHackerspace</string>
-    <string name="empty"></string>
     <string name="ok">OK</string>
 
     <string name="status_open">Ouvert</string>
@@ -45,7 +44,7 @@
     <string name="prefs_text_summary">Ajout d\'un texte du statut sour les widgets</string>
 
     <string name="api_status">Status</string>
-    <string name="api_lastchange">Dernier changement: </string>
+    <string name="api_lastchange">Dernier changement: %s</string>
     <string name="api_duration">Durée: </string>
     <string name="api_duration_hours"> heure(s)</string>
     <string name="api_location">Localisation</string>

@@ -53,4 +53,15 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textIsSelectable="true"
         android:text="More details" />
+    <TextView
+        android:id="@+id/entry_lastchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/entry_img"
+        android:layout_below="@id/entry_details2"
+        android:layout_alignWithParentIfMissing="true"
+        android:autoLink="all"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textIsSelectable="true"
+        android:text="Last updated" />
 </RelativeLayout>

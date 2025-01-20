@@ -7,7 +7,7 @@ Licensed under GNU's GPL 3, see README
 <resources>
 
     <string name="app_name">MyHackerspace</string>
-    <string name="empty"></string>
+    <string name="empty" translatable="false"></string>
     <string name="ok">OK</string>
 
     <string name="status_open">Open</string>
@@ -47,10 +47,14 @@ Licensed under GNU's GPL 3, see README
     <string name="prefs_about_title">About This App</string>
 
     <string name="api_status">Status</string>
-    <string name="api_lastchange">Last change: </string>
+    <string name="api_lastchange">Last change: %s</string>
+    <string name="api_lastchange_now">Now</string>
     <string name="api_duration">Duration: </string>
     <string name="api_duration_hours"> hour(s)</string>
     <string name="api_location">Location</string>
+    <string name="api_location_hint">Hint</string>
+    <string name="api_location_areas">Areas</string>
+    <string name="api_location_country_code">Country Code</string>
     <string name="api_postal_addr">Postal Address</string>
     <string name="api_coordinates">Coordinates</string>
     <string name="api_contact">Contact</string>
@@ -81,15 +85,18 @@ Licensed under GNU's GPL 3, see README
     <string name="api_sensor_door_locked_no">Unlocked</string>
     <string name="api_sensor_beverage_supply">Beverage Supply</string>
     <string name="api_sensor_power_consumption">Power Consumption</string>
+    <string name="api_sensor_power_generation">Power Generation</string>
     <string name="api_sensor_network_connections">Network Connections</string>
     <string name="api_sensor_temperature">Temperature</string>
     <string name="api_sensor_humidity">Humidity</string>
     <string name="api_sensor_barometer">Air Pressure</string>
+    <string name="api_sensor_carbondioxide">CO₂</string>
     <string name="api_sensor_wind">Wind</string>
     <string name="api_sensor_radiation">Radiation</string>
     <string name="api_sensor_total_member_count">Member Count</string>
     <string name="api_sensor_account_balance">Account Balance</string>
 
+    <string name="api_linked_spaces">Linked Spaces</string>
 
     <string name="about_version_title">App Version:</string>
     <string name="about_license_title">License:</string>
