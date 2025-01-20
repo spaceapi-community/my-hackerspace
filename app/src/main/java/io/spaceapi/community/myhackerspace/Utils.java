@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020-2023 Danilo Bargen (dbrgn)
+ * Copyright (C) 2020-2025 Danilo Bargen (dbrgn)
  * Licensed under GNU's GPL 3, see README
  */
 package io.spaceapi.community.myhackerspace;
