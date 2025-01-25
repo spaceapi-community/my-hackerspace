@@ -1,4 +1,7 @@
-apply plugin: 'com.android.application'
+plugins {
+    id "com.android.application"
+    id "app.accrescent.tools.bundletool" version "0.2.4"
+}
 
 def getReleaseProperties() {
     final Properties props = new Properties()
@@ -68,4 +71,15 @@ dependencies {
 
     // JUnit for testing
     testImplementation 'junit:junit:4.13.2'
+}
+
+bundletool {
+    if (releaseProperties['keystoreFile'] != null) {
+        signingConfig {
+            storeFile = file(releaseProperties['keystoreFile'])
+            storePassword = releaseProperties['keystorePassword']
+            keyAlias = releaseProperties['keyAlias']
+            keyPassword = releaseProperties['keyPassword']
+        }
+    }
 }

@@ -20,10 +20,12 @@ Commit & tag:
     $ git commit -S${GPG_KEY} -m "Release v${VERSION}"
     $ git tag -s -u ${GPG_KEY} v${VERSION} -m "Version ${VERSION}"
 
-Generate a signed APK:
+Generate signed release artifacts:
 
-    ./gradlew clean assembleRelease
+    ./gradlew clean assembleRelease buildApksRelease
 
-...and upload it to GitHub releases.
+For the releases:
 
-The F-Droid release will be updated automatically (might take a few days).
+- GitHub: Upload the signed release APK file to GitHub releases
+- Accrescent: Upload the signed release APKS file
+- F-Droid: Will be updated automatically (might take a few days)
