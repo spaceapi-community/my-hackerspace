@@ -78,6 +78,19 @@ You can also build and directly install the file to your connected smartphone:
 
     ./gradlew assembleDebug installDebug
 
+To build a release APK, create file `release.properties` in the project root
+looking like this:
+
+    keystoreFile=release.keystore
+    keystorePassword=***
+    keyAlias=the-key-alias
+    keyPassword=***
+
+Make sure that the `keystoreFile` path exists. Then run:
+
+    ./gradlew clean assembleRelease
+
+
 To see other tasks that gradle offers, run
 
     ./gradlew tasks
