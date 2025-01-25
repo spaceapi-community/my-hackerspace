@@ -12,6 +12,10 @@ android {
         versionName "2.2.0"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation "androidx.annotation:annotation:1.8.0"
+    implementation "androidx.annotation:annotation:1.9.1"
 
     // SpaceAPI Library
     implementation "io.github.spaceapi-community:spaceapi-kt:0.7.0"
