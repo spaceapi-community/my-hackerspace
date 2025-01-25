@@ -12,6 +12,10 @@ android {
         versionName "2.2.0"
     }
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
