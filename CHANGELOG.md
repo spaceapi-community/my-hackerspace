@@ -12,6 +12,23 @@ Possible tags:
 # Unreleased
 
 
+# v2.2.1 (2025-01-25)
+
+- [feature] Allow setting app language through Android app settings ([#55])
+- [change] Update build dependencies
+- [change] Allow creating release artifacts through the command line ([#58])
+
+Contributors to this version:
+
+- Danilo Bargen (@dbrgn)
+- @s3lph
+
+Thanks!
+
+[#55]: https://github.com/spaceapi-community/my-hackerspace/pull/55
+[#58]: https://github.com/spaceapi-community/my-hackerspace/pull/58
+
+
 # v2.2.0 (2025-01-20)
 
 - [feature] Add support for SpaceAPI v15 ([#54])
