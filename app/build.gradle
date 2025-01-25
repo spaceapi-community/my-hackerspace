@@ -1,5 +1,16 @@
 apply plugin: 'com.android.application'
 
+def getReleaseProperties() {
+    final Properties props = new Properties()
+    final File propertiesFile = file("${projectDir.getParent()}/release.properties")
+    if (propertiesFile.exists()) {
+        props.load(new FileInputStream(propertiesFile))
+    }
+    return props
+}
+
+final Properties properties = getReleaseProperties()
+
 android {
     namespace 'io.spaceapi.community.myhackerspace'
 
@@ -16,10 +27,26 @@ android {
         buildConfig = true
     }
 
+    signingConfigs {
+        if (releaseProperties['keystoreFile'] != null) {
+            release {
+                storeFile file(releaseProperties['keystoreFile'])
+                storePassword releaseProperties['keystorePassword']
+                keyAlias releaseProperties['keyAlias']
+                keyPassword releaseProperties['keyPassword']
+            }
+        } else {
+            logger.warn('No release config found. In case you want to create a release build, please ensure that `release.properties` exists. See README.md for more information.')
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            if (releaseProperties['keystoreFile'] != null) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 

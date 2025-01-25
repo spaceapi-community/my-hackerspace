@@ -17,3 +17,7 @@ build
 /captures
 apks/
 app/release/
+
+# Release config
+/release.properties
+/release.keystore
