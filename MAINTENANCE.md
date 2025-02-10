@@ -13,6 +13,10 @@ People with publication rights on Google Play:
 
 - @dbrgn
 
+People with publication rights on Accrescent:
+
+- @dbrgn
+
 ## Review and Merge Policy
 
 In case there are multiple maintainers, non-trivial changes should be reviewed
