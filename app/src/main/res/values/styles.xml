@@ -3,6 +3,9 @@
     Copyright (C) 2013 Aubort Jean-Baptiste (Rorist)
     Licensed under GNU's GPL 3, see README
 -->
-<resources>
-    <style name="LightThemeSelector" parent="android:Theme.Light.NoTitleBar" />
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="LightThemeSelector" parent="android:Theme.Holo.Light">
+        <!-- Opt out of edge-to-edge enforcement (Note: deprecated in API 36+) -->
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+    </style>
 </resources>
