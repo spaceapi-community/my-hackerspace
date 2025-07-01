@@ -12,6 +12,25 @@ Possible tags:
 # Unreleased
 
 
+# v2.3.0 (2025-07-06)
+
+- [feature] Allow setting app language through Android app settings ([#55])
+- [change] Update build dependencies
+- [change] Allow creating release artifacts through the command line ([#58])
+- [change] Change TargetSDK to 36 (Android 16) ([#64])
+
+Contributors to this version:
+
+- Danilo Bargen (@dbrgn)
+- @s3lph
+
+Thanks!
+
+[#55]: https://github.com/spaceapi-community/my-hackerspace/pull/55
+[#58]: https://github.com/spaceapi-community/my-hackerspace/pull/58
+[#64]: https://github.com/spaceapi-community/my-hackerspace/pull/64
+
+
 # v2.2.0 (2025-01-20)
 
 - [feature] Add support for SpaceAPI v15 ([#54])
