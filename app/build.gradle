@@ -20,8 +20,8 @@ android {
     defaultConfig {
         applicationId "io.spaceapi.community.myhackerspace"
         minSdkVersion 26
-        compileSdk 34
-        targetSdkVersion 34
+        compileSdk 36
+        targetSdkVersion 36
         versionCode 107
         versionName "2.2.0"
     }

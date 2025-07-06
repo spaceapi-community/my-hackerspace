@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-    Copyright (C) 2013 Aubort Jean-Baptiste (Rorist)
-    Licensed under GNU's GPL 3, see README
--->
-<resources>
-    <style name="LightThemeSelector" parent="android:Theme.Holo.Light" />
-</resources>
