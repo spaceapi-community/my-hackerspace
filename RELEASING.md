@@ -38,3 +38,4 @@ For the releases:
 - GitHub: Upload the signed release APK file to GitHub releases
 - Accrescent: Upload the signed release APKS file
 - F-Droid: Will be updated automatically (might take a few days)
+- Google Play: Upload the signed release AAB file to Play Console
