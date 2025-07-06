@@ -24,6 +24,15 @@ Generate signed release artifacts:
 
     ./gradlew clean assembleRelease buildApksRelease
 
+Copy release files:
+
+    mkdir -p releases/${VERSION}/
+    cp app/build/outputs/apk/release/app-release.apk releases/${VERSION}/MyHackerspace-${VERSION}.apk
+    cp app/build/outputs/bundle/release/app-release.aab releases/${VERSION}/MyHackerspace-${VERSION}.aab
+    cp app/build/outputs/apkset/release/app-release.apks releases/${VERSION}/MyHackerspace-${VERSION}.apks
+    cp app/build/outputs/apk/release/output-metadata.json releases/${VERSION}/
+    sed -i 's/app-release.apk/MyHackerspace-${VERSION}.apk/g' releases/${VERSION}/output-metadata.json
+
 For the releases:
 
 - GitHub: Upload the signed release APK file to GitHub releases
