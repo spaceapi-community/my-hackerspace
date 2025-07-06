@@ -22,8 +22,8 @@ android {
         minSdkVersion 26
         compileSdk 36
         targetSdkVersion 36
-        versionCode 108
-        versionName "2.3.0"
+        versionCode 109
+        versionName "2.3.1"
     }
 
     buildFeatures {

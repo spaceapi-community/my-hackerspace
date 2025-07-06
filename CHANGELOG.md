@@ -12,6 +12,11 @@ Possible tags:
 # Unreleased
 
 
+# v2.3.1 (2025-07-07)
+
+Just like 2.3.0, just the result of an error in the release process...
+
+
 # v2.3.0 (2025-07-06)
 
 - [feature] Allow setting app language through Android app settings ([#55])

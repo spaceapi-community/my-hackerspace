@@ -1,0 +1,1 @@
+- [feature] Allow setting app language through Android app settings
